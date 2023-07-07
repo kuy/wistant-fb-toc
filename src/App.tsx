@@ -1,23 +1,35 @@
-import { useState, useEffect } from 'react'
+import CSS from "csstype"
+import { useState, useEffect } from "react"
+import { Title } from "./Title"
+import { ViewpointList, ItemData } from "./ViewpointList"
 
-type IndexData = {
-  title: string,
-  node: HTMLHeadingElement
+const titleLayout: CSS.Properties = {
+  width: "100%",
+  padding: "12px 16px",
+  borderBottom: "1px solid rgb(234, 237, 237)",
+  display: "flex",
+  WebkitBoxAlign: "center",
+  alignItems: "center",
+  WebkitBoxPack: "justify",
+  justifyContent: "space-between",
+  height: "56px",
+}
+
+const listLayout: CSS.Properties = {
+  padding: "16px",
 }
 
 export const App: React.FC = () => {
-  const [viewpoints, setViewpoints] = useState([] as IndexData[])
+  const [viewpoints, setViewpoints] = useState([] as ItemData[])
 
   useEffect(() => {
     const items = []
     for (const h1 of document.querySelectorAll("h1")) {
-      const tokens = (h1.textContent ?? '').split("：")
+      const tokens = (h1.textContent ?? "").split("：")
       if (tokens.length === 1 && !tokens[0].includes("の進め方")) {
-        items.push({ title: h1.textContent!, node: h1 })
+        items.push({ title: h1.textContent!, el: h1 })
       } else if (tokens.length === 2 && tokens[1] === "良かった点・タイトル") {
-        items.push({
-          title: tokens[0], node: h1
-        })
+        items.push({ title: tokens[0], el: h1 })
       }
     }
     setViewpoints(items)
@@ -28,10 +40,13 @@ export const App: React.FC = () => {
   }
 
   return (
-    <ul>
-      {viewpoints.map((data) => {
-        return <li onClick={() => handleJump(data.node)} style={{ fontSize: '1.2rem', cursor: 'pointer', lineHeight: '1.8' }}>{data.title}</li>
-      })}
-    </ul>
+    <div>
+      <div style={titleLayout}>
+        <Title>フィードバックの観点</Title>
+      </div>
+      <div style={listLayout}>
+        <ViewpointList items={viewpoints} onClick={handleJump} />
+      </div>
+    </div>
   )
 }
