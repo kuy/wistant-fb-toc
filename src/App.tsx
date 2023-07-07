@@ -28,7 +28,10 @@ export const App: React.FC = () => {
       const tokens = (h1.textContent ?? "").split("：")
       if (tokens.length === 1 && !tokens[0].includes("の進め方")) {
         items.push({ title: h1.textContent!, el: h1 })
-      } else if (tokens.length === 2 && tokens[1].trim() === "良かった点・タイトル") {
+      } else if (
+        tokens.length === 2 &&
+        tokens[1].trim() === "良かった点・タイトル"
+      ) {
         items.push({ title: tokens[0], el: h1 })
       }
     }
