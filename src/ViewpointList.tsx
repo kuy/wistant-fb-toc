@@ -1,12 +1,8 @@
 import CSS from "csstype"
-
-export type ItemData = {
-  title: string
-  el: HTMLHeadingElement
-}
+import { Viewpoint } from "./strategies"
 
 type Props = {
-  items: ItemData[]
+  items: Viewpoint[]
   onClick: (el: HTMLHeadElement) => void
 }
 
@@ -27,7 +23,7 @@ const liStyle: CSS.Properties = {
 }
 
 type ListItemProps = {
-  children: ItemData
+  children: Viewpoint
   onClick: (el: HTMLHeadElement) => void
 }
 

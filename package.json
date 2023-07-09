@@ -1,13 +1,13 @@
 {
   "name": "wistant-fb-toc",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "0.1.0",
+  "type": "commonjs",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "format": "prettier . --write",
-    "preview": "vite preview"
+    "test": "jest"
   },
   "prettier": {
     "trailingComma": "es5",
@@ -21,10 +21,14 @@
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.0.0-beta.18",
+    "@types/jest": "^29.5.2",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
+    "jest": "^29.6.1",
+    "jest-environment-jsdom": "^29.6.1",
     "prettier": "3.0.0",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
   }

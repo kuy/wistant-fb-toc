@@ -1,7 +1,9 @@
 import CSS from "csstype"
 import { useState, useEffect } from "react"
 import { Title } from "./Title"
-import { ViewpointList, ItemData } from "./ViewpointList"
+import { ViewpointList } from "./ViewpointList"
+import { Viewpoint, ubpt } from "./strategies"
+import { findAllViewpoints } from "./wistant"
 
 const titleLayout: CSS.Properties = {
   width: "100%",
@@ -20,21 +22,10 @@ const listLayout: CSS.Properties = {
 }
 
 export const App: React.FC = () => {
-  const [viewpoints, setViewpoints] = useState([] as ItemData[])
+  const [viewpoints, setViewpoints] = useState([] as Viewpoint[])
 
   useEffect(() => {
-    const items = []
-    for (const h1 of document.querySelectorAll("h1")) {
-      const tokens = (h1.textContent ?? "").split("：")
-      if (tokens.length === 1 && !tokens[0].includes("の進め方")) {
-        items.push({ title: h1.textContent!, el: h1 })
-      } else if (
-        tokens.length === 2 &&
-        tokens[1].trim() === "良かった点・タイトル"
-      ) {
-        items.push({ title: tokens[0], el: h1 })
-      }
-    }
+    const items = findAllViewpoints(ubpt)
     setViewpoints(items)
   }, [])
 
