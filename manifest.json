@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Wistant Feedback TOC",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "permissions": ["activeTab", "scripting"],
   "action": { "default_popup": "popup.html" },
   "content_scripts": [
