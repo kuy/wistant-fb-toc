@@ -16,11 +16,12 @@ export const ViewpointList: React.FC<Props> = ({ items, onClick }) => {
   )
 }
 
-const liStyle: CSS.Properties = {
+const liStyle = (disabled: boolean): CSS.Properties => ({
+  color: disabled ? "#999" : "inherit",
   fontSize: "1.2rem",
   cursor: "pointer",
   lineHeight: "1.8",
-}
+})
 
 type ListItemProps = {
   children: Viewpoint
@@ -29,7 +30,10 @@ type ListItemProps = {
 
 const ListItem: React.FC<ListItemProps> = ({ children, onClick }) => {
   return (
-    <li style={liStyle} onClick={() => onClick(children.el)}>
+    <li
+      style={liStyle(children.blank === "blank")}
+      onClick={() => onClick(children.el)}
+    >
       {children.title}
     </li>
   )

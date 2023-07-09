@@ -30,3 +30,16 @@ export const findAllViewpoints = (find: Finder): Viewpoint[] => {
   }
   return items
 }
+
+export const withBlankStatus = (viewpoints: Viewpoint[]): Viewpoint[] => {
+  viewpoints.forEach((viewpoint) => {
+    const rootEl = viewpoint.el.parentElement!.parentElement!
+    const comments = rootEl.querySelectorAll(".viewEditor__view")
+    let blankAll = true
+    for (const el of comments) {
+      blankAll = blankAll && el.textContent === ""
+    }
+    viewpoint.blank = blankAll ? "blank" : "filled"
+  })
+  return viewpoints
+}

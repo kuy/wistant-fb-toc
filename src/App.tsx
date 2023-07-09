@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Title } from "./Title"
 import { ViewpointList } from "./ViewpointList"
 import { Viewpoint, ubpt } from "./strategies"
-import { findAllViewpoints } from "./wistant"
+import { findAllViewpoints, withBlankStatus } from "./wistant"
 
 const titleLayout: CSS.Properties = {
   width: "100%",
@@ -25,7 +25,8 @@ export const App: React.FC = () => {
   const [viewpoints, setViewpoints] = useState([] as Viewpoint[])
 
   useEffect(() => {
-    const items = findAllViewpoints(ubpt)
+    let items = findAllViewpoints(ubpt)
+    items = withBlankStatus(items)
     setViewpoints(items)
   }, [])
 

@@ -5,20 +5,28 @@ describe("strategies.ubpt", () => {
     document.body.innerHTML = "<h1>じゅげむじゅげむ：良かった点・タイトル</h1>"
     let h1 = document.querySelector("h1")!
     let viewpoint = ubpt(h1)
-    expect(viewpoint).toEqual({ title: "じゅげむじゅげむ", el: h1 })
+    expect(viewpoint).toEqual({
+      title: "じゅげむじゅげむ",
+      el: h1,
+      blank: "unknown",
+    })
 
     // Ignore tailing spaces
     document.body.innerHTML = "<h1>じゅげむじゅげむ：良かった点・タイトル </h1>"
     h1 = document.querySelector("h1")!
     viewpoint = ubpt(h1)
-    expect(viewpoint).toEqual({ title: "じゅげむじゅげむ", el: h1 })
+    expect(viewpoint).toEqual({
+      title: "じゅげむじゅげむ",
+      el: h1,
+      blank: "unknown",
+    })
   })
 
   test("collect #2", () => {
     document.body.innerHTML = "<h1>2023 2Q</h1>"
     const h1 = document.querySelector("h1")!
     const viewpoint = ubpt(h1)
-    expect(viewpoint).toEqual({ title: "2023 2Q", el: h1 })
+    expect(viewpoint).toEqual({ title: "2023 2Q", el: h1, blank: "unknown" })
   })
 
   test("ignore #1", () => {
