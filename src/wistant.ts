@@ -1,4 +1,4 @@
-import { Collector, Viewpoint } from "./strategies"
+import { Finder, Viewpoint } from "./strategies"
 
 export const findEntryPoint = (): HTMLDivElement | null => {
   const h1 = document.querySelector("h1")
@@ -20,10 +20,10 @@ export const createContainer = (): HTMLDivElement => {
   return container
 }
 
-export const findAllViewpoints = (collect: Collector): Viewpoint[] => {
+export const findAllViewpoints = (find: Finder): Viewpoint[] => {
   const items = []
   for (const h1 of document.querySelectorAll("h1")) {
-    const viewpoint = collect(h1)
+    const viewpoint = find(h1)
     if (viewpoint) {
       items.push(viewpoint)
     }
